@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+venv/
+.venv/
+env/
+
+# Jupyter
+/.jupyter/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# R files (original)
+.RData
+.Rhistory
+
+# Project specific
+create_notebook.py
+report_text.txt
