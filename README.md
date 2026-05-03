@@ -66,11 +66,15 @@ Baseline model ignoring panel structure entirely.
 
 #### 2. Fixed Effects (Within)
 
-Let $\ddot{Z}_{it} = Z_{it} - \bar{Z}_i$ denote the **within-transformed** (demeaned) value of variable $Z$. Then:
+Define the **within-transformed** (demeaned) value of any variable $Z$ as:
+
+$$\ddot{Z}_{it} = Z_{it} - \bar{Z}_i$$
+
+The fixed effects model then becomes:
 
 $$\ddot{Y}_{it} = \beta_1 \ddot{X}_{1,it} + \beta_2 \ddot{X}_{2,it} + \ddot{u}_{it}$$
 
-where $X_{1,it} = \log RD_{it}$ and $X_{2,it} = \log Spillover_{it}$.  
+where $X_1 = \log RD$ and $X_2 = \log Spillover$ represent log R&D and log spillovers.
 
 Removes **time-invariant unobserved heterogeneity** (firm culture, management quality, baseline tech capability) through within-transformation.
 
@@ -84,9 +88,13 @@ Assumes individual effects $c_i$ are uncorrelated with regressors — tested via
 
 Uses **lagged** values of R&D and spillovers as instruments to address **endogeneity** of R&D investment (simultaneity between patenting and R&D spending).
 
-Let $X_{it} = \log RD_{it}$ and $S_{it} = \log Spillover_{it}$. Lagged values $X_{i,t-1}$ and $S_{i,t-1}$ serve as instruments.
+Let $X$ denote log R&D and $S$ denote log spillovers, with firm $i$ and year $t$:
 
-**First stage** (predict endogenous $X_{it}$):
+$$X_{it} = \log RD_{it}, \qquad S_{it} = \log Spillover_{it}$$
+
+Lagged values serve as instruments.
+
+**First stage** (predict R&D investment):
 
 $$\hat{X}_{it} = \gamma_0 + \gamma_1 X_{i,t-1} + \gamma_2 S_{i,t-1} + \gamma_3 S_{it} + c_i + \epsilon_{it}$$
 
