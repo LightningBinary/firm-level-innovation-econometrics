@@ -59,19 +59,34 @@ STAT5210_Project/
 ### Econometric Framework
 
 #### 1. Pooled OLS
-$$Y_{it} = \beta_0 + \beta_1 \log(RD_{it}) + \beta_2 \log(Spillover_{it}) + \varepsilon_{it}$$
+
+$$Y_{it} = \beta_0 + \beta_1 \log RD_{it} + \beta_2 \log Spillover_{it} + \varepsilon_{it}$$
+
 Baseline model ignoring panel structure entirely.
 
 #### 2. Fixed Effects (Within)
-$$\ddot{Y}_{it} = \beta_1 \ddot{\log(RD)}_{it} + \beta_2 \ddot{\log(Spillover)}_{it} + \ddot{u}_{it}$$
+
+Let $\ddot{Z}_{it} = Z_{it} - \bar{Z}_i$ denote the **within-transformed** (demeaned) value of variable $Z$. Then:
+
+$$\ddot{Y}_{it} = \beta_1 \ddot{X}_{1,it} + \beta_2 \ddot{X}_{2,it} + \ddot{u}_{it}$$
+
+where $X_{1,it} = \log RD_{it}$ and $X_{2,it} = \log Spillover_{it}$.  
+
 Removes **time-invariant unobserved heterogeneity** (firm culture, management quality, baseline tech capability) through within-transformation.
 
 #### 3. Random Effects
-$$Y_{it} = \beta_0 + \beta_1 \log(RD_{it}) + \beta_2 \log(Spillover_{it}) + c_i + u_{it}$$
-Assumes individual effects are uncorrelated with regressors — tested via **Hausman test**.
+
+$$Y_{it} = \beta_0 + \beta_1 \log RD_{it} + \beta_2 \log Spillover_{it} + c_i + u_{it}$$
+
+Assumes individual effects $c_i$ are uncorrelated with regressors — tested via **Hausman test**.
 
 #### 4. Two-Stage Least Squares (2SLS-IV)
-Uses **lagged** $\log(RD)_{t-1}$ and $\log(Spillover)_{t-1}$ as instruments to address **endogeneity** of R&D investment (simultaneity between patenting and R&D decisions).
+
+Uses **lagged** $\log RD_{i,t-1}$ and $\log Spillover_{i,t-1}$ as instruments to address **endogeneity** of R&D investment (simultaneity between patenting and R&D decisions).
+
+**First stage:** $\widehat{\log RD}_{it} = \gamma_0 + \gamma_1 \log RD_{i,t-1} + \gamma_2 \log Spillover_{i,t-1} + \gamma_3 \log Spillover_{it} + c_i + \epsilon_{it}$
+
+**Second stage:** $Y_{it} = \beta_0 + \beta_1 \widehat{\log RD}_{it} + \beta_2 \log Spillover_{it} + c_i + u_{it}$
 
 ### Hypothesis Tests
 
