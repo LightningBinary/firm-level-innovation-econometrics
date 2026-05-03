@@ -82,11 +82,15 @@ Assumes individual effects $c_i$ are uncorrelated with regressors — tested via
 
 #### 4. Two-Stage Least Squares (2SLS-IV)
 
-Uses **lagged** $\log RD_{i,t-1}$ and $\log Spillover_{i,t-1}$ as instruments to address **endogeneity** of R&D investment (simultaneity between patenting and R&D decisions).
+Uses **lagged** values of R&D and spillovers as instruments to address **endogeneity** of R&D investment (simultaneity between patenting and R&D spending).
 
-**First stage:** $\widehat{\log RD}_{it} = \gamma_0 + \gamma_1 \log RD_{i,t-1} + \gamma_2 \log Spillover_{i,t-1} + \gamma_3 \log Spillover_{it} + c_i + \epsilon_{it}$
+Let $X_{it} = \log RD_{it}$ and $S_{it} = \log Spillover_{it}$. Lagged values $X_{i,t-1}$ and $S_{i,t-1}$ serve as instruments.
 
-**Second stage:** $Y_{it} = \beta_0 + \beta_1 \widehat{\log RD}_{it} + \beta_2 \log Spillover_{it} + c_i + u_{it}$
+**First stage** (predict endogenous $X_{it}$):
+$$\widehat{X}_{it} = \gamma_0 + \gamma_1 X_{i,t-1} + \gamma_2 S_{i,t-1} + \gamma_3 S_{it} + c_i + \epsilon_{it}$$
+
+**Second stage** (structural equation with predicted R&D):
+$$Y_{it} = \beta_0 + \beta_1 \widehat{X}_{it} + \beta_2 S_{it} + c_i + u_{it}$$
 
 ### Hypothesis Tests
 
