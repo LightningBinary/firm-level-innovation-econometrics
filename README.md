@@ -87,10 +87,12 @@ Uses **lagged** values of R&D and spillovers as instruments to address **endogen
 Let $X_{it} = \log RD_{it}$ and $S_{it} = \log Spillover_{it}$. Lagged values $X_{i,t-1}$ and $S_{i,t-1}$ serve as instruments.
 
 **First stage** (predict endogenous $X_{it}$):
-$$\widehat{X}_{it} = \gamma_0 + \gamma_1 X_{i,t-1} + \gamma_2 S_{i,t-1} + \gamma_3 S_{it} + c_i + \epsilon_{it}$$
+
+$$\hat{X}_{it} = \gamma_0 + \gamma_1 X_{i,t-1} + \gamma_2 S_{i,t-1} + \gamma_3 S_{it} + c_i + \epsilon_{it}$$
 
 **Second stage** (structural equation with predicted R&D):
-$$Y_{it} = \beta_0 + \beta_1 \widehat{X}_{it} + \beta_2 S_{it} + c_i + u_{it}$$
+
+$$Y_{it} = \beta_0 + \beta_1 \hat{X}_{it} + \beta_2 S_{it} + c_i + u_{it}$$
 
 ### Hypothesis Tests
 
